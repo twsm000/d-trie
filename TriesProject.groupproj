@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A28D0480-B631-4F7E-9119-D5924A98E7C2}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Trie.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Tests\TrieTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Trie">
+        <MSBuild Projects="Trie.dproj"/>
+    </Target>
+    <Target Name="Trie:Clean">
+        <MSBuild Projects="Trie.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Trie:Make">
+        <MSBuild Projects="Trie.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TrieTest">
+        <MSBuild Projects="Tests\TrieTest.dproj"/>
+    </Target>
+    <Target Name="TrieTest:Clean">
+        <MSBuild Projects="Tests\TrieTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TrieTest:Make">
+        <MSBuild Projects="Tests\TrieTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Trie;TrieTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Trie:Clean;TrieTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Trie:Make;TrieTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
