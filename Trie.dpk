@@ -31,6 +31,7 @@ requires
   rtl;
 
 contains
-  Trie in 'Trie.pas';
+  DS.Trie in 'DS.Trie.pas',
+  DS.TrieNode in 'DS.TrieNode.pas';
 
 end.

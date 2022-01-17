@@ -7,6 +7,9 @@
             <Dependencies/>
         </Projects>
         <Projects Include="Tests\TrieTest.dproj">
+            <Dependencies>Trie.dproj</Dependencies>
+        </Projects>
+        <Projects Include="Benchmark\TrieBenchmark.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -26,23 +29,32 @@
     <Target Name="Trie:Make">
         <MSBuild Projects="Trie.dproj" Targets="Make"/>
     </Target>
-    <Target Name="TrieTest">
+    <Target Name="TrieTest" DependsOnTargets="Trie">
         <MSBuild Projects="Tests\TrieTest.dproj"/>
     </Target>
-    <Target Name="TrieTest:Clean">
+    <Target Name="TrieTest:Clean" DependsOnTargets="Trie:Clean">
         <MSBuild Projects="Tests\TrieTest.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="TrieTest:Make">
+    <Target Name="TrieTest:Make" DependsOnTargets="Trie:Make">
         <MSBuild Projects="Tests\TrieTest.dproj" Targets="Make"/>
     </Target>
+    <Target Name="TrieBenchmark">
+        <MSBuild Projects="Benchmark\TrieBenchmark.dproj"/>
+    </Target>
+    <Target Name="TrieBenchmark:Clean">
+        <MSBuild Projects="Benchmark\TrieBenchmark.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TrieBenchmark:Make">
+        <MSBuild Projects="Benchmark\TrieBenchmark.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Trie;TrieTest"/>
+        <CallTarget Targets="Trie;TrieTest;TrieBenchmark"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Trie:Clean;TrieTest:Clean"/>
+        <CallTarget Targets="Trie:Clean;TrieTest:Clean;TrieBenchmark:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Trie:Make;TrieTest:Make"/>
+        <CallTarget Targets="Trie:Make;TrieTest:Make;TrieBenchmark:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
