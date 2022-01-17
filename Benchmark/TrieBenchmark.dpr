@@ -6,8 +6,8 @@ program TrieBenchmark;
 
 uses
   System.SysUtils,
-  Spring.Benchmark in 'dep\benchmark\Spring.Benchmark.pas',
-  Benchmark.Trie in 'Benchmark.Trie.pas';
+  Spring.Benchmark,
+  BM.Trie in 'BM.Trie.pas';
 
 var
   WaitOutput: string;
@@ -15,10 +15,10 @@ var
 begin
   try
     // Register the function as a benchmark
-    Spring.Benchmark.Benchmark(BM_QuickSort, 'QuickSort').Arg(8).Arg(64).Arg(512).Arg(1024).Arg(8192);
+    Benchmark(BM_AddAllMinutesInADay, 'BM_AddAllMinutesInADay');
 
     // Run the benchmark
-    Spring.Benchmark.Benchmark_Main;
+    Benchmark_Main(True);
 
     WriteLn('Press ENTER to exit:');
     ReadLn(WaitOutput);
