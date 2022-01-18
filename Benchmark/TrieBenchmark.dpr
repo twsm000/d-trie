@@ -16,6 +16,8 @@ begin
   try
     // Register the function as a benchmark
     Benchmark(BM_AddAllMinutesInADay, 'BM_AddAllMinutesInADay');
+    Benchmark(BM_ReadAllWordsIntoTrie, 'BM_ReadAllWordsIntoTrie');
+    Benchmark(BM_ReadAllWordsIntoDictionary, 'BM_ReadAllWordsIntoDictionary');
 
     // Run the benchmark
     Benchmark_Main(True);
